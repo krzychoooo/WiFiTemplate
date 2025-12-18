@@ -4,7 +4,7 @@
 #include <AsyncTCP.h>
 #include <ElegantOTA.h>
 #include "LittleFS.h"
-
+#include "pcb.h"
 
 //Variables to save values from HTML form
 String ssid;
@@ -86,7 +86,7 @@ void writeFile(fs::FS &fs, const char * path, const char * message){
 // Replaces placeholder with LED state value
 String processor(const String& var) {
   if(var == "STATE") {
-    if(digitalRead(ledPin)) {
+    if(digitalRead(PIN_LED)) {
       ledState = "ON";
     }
     else {
@@ -152,13 +152,13 @@ void serverHelper(){
     
     // Route to set GPIO state to HIGH
     server.on("/on", HTTP_GET, [](AsyncWebServerRequest *request) {
-      digitalWrite(ledPin, HIGH);
+      digitalWrite(PIN_LED, HIGH);
       request->send(LittleFS, "/index.html", "text/html", false, processor);
     });
 
     // Route to set GPIO state to LOW
     server.on("/off", HTTP_GET, [](AsyncWebServerRequest *request) {
-      digitalWrite(ledPin, LOW);
+      digitalWrite(PIN_LED, LOW);
       request->send(LittleFS, "/index.html", "text/html", false, processor);
     });
     server.begin();

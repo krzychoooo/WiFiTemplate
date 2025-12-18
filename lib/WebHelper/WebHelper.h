@@ -4,7 +4,6 @@
 #include <Arduino.h>
 
 String processor(const String& var);
-extern const int ledPin;
 extern String ledState;
 void serverHelper(void);
 void initLittleFS(void);
