@@ -2,6 +2,7 @@
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h>
+#include <ElegantOTA.h>
 #include "LittleFS.h"
 
 
@@ -225,4 +226,5 @@ void serverHelper(){
     });
     server.begin();
   }
+  ElegantOTA.begin(&server);
 }

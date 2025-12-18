@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <ElegantOTA.h>
 #include <WiFi.h>
 #include <ESPAsyncWebServer.h>
 #include <AsyncTCP.h>
@@ -18,17 +19,17 @@ String ledState;
 void setup() {
   // Serial port for debugging purposes
   Serial.begin(115200);
-
-  initLittleFS();
-
+  
   // Set GPIO 2 as an OUTPUT
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
+
+  initLittleFS();
   
   serverHelper();
   
 }
 
 void loop() {
-
+  ElegantOTA.loop();
 }
