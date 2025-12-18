@@ -94,6 +94,10 @@ String processor(const String& var) {
     }
     return ledState;
   }
+  if (var == "VERSION"){
+    return "1.0.1";
+  }
+  
   return String();
 }
 
